@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #studio-container {
+      width: 100%;
+      height: 100%;
+      overflow: auto; /* Adicionando overflow: auto para ativar as barras de rolagem */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="studio-container">
+    <svg id="studio" width="1000" height="600" viewBox="0 50 1000 600" xmlns="http://www.w3.org/2000/svg">
+      <image xlink:href="/kamisato-ayato-genshin-impact.jpg" x="0" y="60" width="900" height="510"></image>
+    </svg>
+  </div>
+
+</body>
+
+<script>
+  var svgContainer = document.getElementById("studio-container");
+  var svg = document.getElementById("studio");
+
+  var viewBox = svg.viewBox.baseVal;
+  var isDragging = false;
+  var startX, startY;
+  var startViewBoxX, startViewBoxY;
+
+  svgContainer.addEventListener("wheel", function (event) {
+    event.preventDefault();
+
+    var zoomIntensity = 0.1;
+    var delta = event.deltaY > 0 ? -1 : 1;
+
+    var scaleFactor = Math.pow(1 + zoomIntensity, delta);
+    var oldWidth = viewBox.width;
+    var oldHeight = viewBox.height;
+    var mouseX = event.clientX - svg.getBoundingClientRect().left;
+    var mouseY = event.clientY - svg.getBoundingClientRect().top;
+
+    viewBox.width *= scaleFactor;
+    viewBox.height *= scaleFactor;
+    viewBox.x -= (viewBox.width - oldWidth) * (mouseX / svg.width.baseVal.value);
+    viewBox.y -= (viewBox.height - oldHeight) * (mouseY / svg.height.baseVal.value);
+    console.log(viewBox.x)
+  });
+
+  svgContainer.addEventListener("mousedown", function (event) {
+    if (event.button === 0 && event.ctrlKey) {
+      isDragging = true;
+      startX = event.clientX;
+      startY = event.clientY;
+      startViewBoxX = viewBox.x;
+      startViewBoxY = viewBox.y;
+    }
+  });
+
+  window.addEventListener("mouseup", function (event) {
+    if (event.button === 0) {
+      isDragging = false;
+    }
+  });
+
+  window.addEventListener("mousemove", function (event) {
+    if (isDragging) {
+      var deltaX = event.clientX - startX;
+      var deltaY = event.clientY - startY;
+      viewBox.x = startViewBoxX - deltaX;
+      viewBox.y = startViewBoxY - deltaY;
+    }
+  });
+
+  window.addEventListener("keydown", function (event) {
+    if (event.code === "Space") {
+      svg.style.cursor = "grabbing";
+      isDragging = true;
+      startX = event.clientX;
+      startY = event.clientY;
+      startViewBoxX = viewBox.x;
+      startViewBoxY = viewBox.y;
+    }
+  });
+
+  window.addEventListener("keyup", function (event) {
+    if (event.code === "Space") {
+      svg.style.cursor = "auto";
+      isDragging = false;
+    }
+  });
+
+</script>
+
+</html>

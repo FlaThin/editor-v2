@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <title>Editor</title>
+</head>
+
+<body>
+  <div class="editor">
+    <div class="actions layers">
+      <header class="principle-header">
+        <div class="wrapper-editor-input">
+          <label for="hash">
+            <div class="icon-left">
+              <i class="ph-bold ph-magnifying-glass"></i>
+            </div>
+            <input type="text" id="hash" placeholder="Search">
+          </label>
+        </div>
+      </header>
+
+      <header class="header-layers-content">
+        <h3>layers</h3>
+        <i class="ph-bold ph-caret-down"></i>
+      </header>
+
+      <section class="layer-contents">
+
+      </section>
+
+
+    </div>
+    <svg id="studio" xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 747">
+      <g id="grid"></g>
+    </svg>
+    <div class="actions workspace">
+      <header>
+        <h3>workspace</h3>
+      </header>
+      <div class="content-workspace">
+        <h4>position</h4>
+        <div class="grid-contents-workspace">
+          <div class="wrapper-editor-input h-10 px-4">
+            <label for="top">
+              <input type="text" id="top" placeholder="top">
+            </label>
+          </div>
+          <div class="wrapper-editor-input h-10 px-4">
+            <label for="left">
+              <input type="text" id="left" placeholder="left">
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-workspace">
+        <h4>font</h4>
+        <div class="grid-contents-workspace">
+          <div class="wrapper-editor-input h-10 px-4">
+            <label for="top">
+              <input type="text" id="top" placeholder="size">
+            </label>
+          </div>
+
+          <div class="wrapper-editor-input h-10 px-4">
+            <label for="top">
+              <input type="text" id="top" placeholder="weight">
+            </label>
+          </div>
+
+          <div class="wrapper-editor-input h-10 px-4">
+            <label for="top">
+              <input type="text" id="top" placeholder="family">
+            </label>
+          </div>
+          <div class="wrapper-editor-input h-10 px-4">
+            <label for="left">
+              <input type="text" id="left" placeholder="line height">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="use-cases/ui/create-layers.js"></script>
+<script src="use-cases/studio/use-zoom.js"></script>
+<script src="use-cases/studio/create-lines.js"></script>
+<script src="use-cases/ui/insert-image.js"></script>
+
+</html>
