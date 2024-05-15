@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/styles.css">
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="./css/styles.css">
 
   <title>Editor</title>
 </head>
@@ -37,6 +36,7 @@
     </div>
     <svg id="studio" xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 747">
       <g id="grid"></g>
+      <text x="300" y="500" dominant-baseline="middle" text-anchor="middle" font-size="24" fill="black">Hello, SVG!</text>
     </svg>
     <div class="actions workspace">
       <header>
@@ -88,9 +88,9 @@
     </div>
   </div>
 </body>
-<script src="use-cases/ui/create-layers.js"></script>
-<script src="use-cases/studio/use-zoom.js"></script>
-<script src="use-cases/studio/create-lines.js"></script>
-<script src="use-cases/ui/insert-image.js"></script>
+<script src="./use-cases/ui/create-layers.js"></script>
+<script src="./use-cases/studio/use-zoom.js"></script>
+<script src="./use-cases/studio/create-lines.js"></script>
+<script src="controllers/index.js" type="module"></script>
 
 </html>
