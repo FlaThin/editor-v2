@@ -590,6 +590,7 @@ var _insertImage = require("../use-cases/studio/use-image/insert-image");
 var _insertText = require("../use-cases/studio/use-text/insert-text");
 var _kamisatoAyatoGenshinImpactJpg = require("../../public/kamisato-ayato-genshin-impact.jpg");
 var _kamisatoAyatoGenshinImpactJpgDefault = parcelHelpers.interopDefault(_kamisatoAyatoGenshinImpactJpg);
+var _render = require("../use-cases/studio/use-image/render");
 const image = (0, _insertImage.insertImage)((0, _kamisatoAyatoGenshinImpactJpgDefault.default));
 const text = (0, _insertText.insertText)("Twitter");
 (0, _updateItem.updateItem)(text, {
@@ -597,6 +598,15 @@ const text = (0, _insertText.insertText)("Twitter");
     "x": 500,
     "y": 100
 });
+(0, _render.render)(image);
+console.log(776 / 1.7);
+console.log(svg.viewBox.baseVal.height / 2);
+console.log(image.width.baseVal);
+const posy = svg.viewBox.baseVal.height / 2 - 776 / 1.7;
+console.log(svg.viewBox.baseVal.width);
+const posx = svg.viewBox.baseVal.width * 312 / svg.width.baseVal.value;
+image.setAttribute("x", posx);
+image.setAttribute("y", posy);
 image.addEventListener("click", (element, event)=>{
     var bbox = image.getBBox();
     var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
@@ -610,7 +620,7 @@ image.addEventListener("click", (element, event)=>{
     svg.appendChild(rect);
 });
 
-},{"../use-cases/studio/use-text/insert-text":"36KFH","../use-cases/studio/update-item":"6SXzP","../use-cases/studio/use-image/insert-image":"c72Os","../../public/kamisato-ayato-genshin-impact.jpg":"fVaBd","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"36KFH":[function(require,module,exports) {
+},{"../use-cases/studio/use-text/insert-text":"36KFH","../use-cases/studio/update-item":"6SXzP","../use-cases/studio/use-image/insert-image":"c72Os","../../public/kamisato-ayato-genshin-impact.jpg":"fVaBd","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../use-cases/studio/use-image/render":"aXK7d"}],"36KFH":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "insertText", ()=>insertText);
@@ -672,7 +682,7 @@ function updateItem(item, mutate) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "insertImage", ()=>insertImage);
-function insertImage(url, mouseX, mouseY) {
+function insertImage(url, x, y) {
     var image = document.createElementNS("http://www.w3.org/2000/svg", "image");
     image.setAttributeNS("http://www.w3.org/1999/xlink", "href", url);
     image.setAttribute("x", "0");
@@ -722,6 +732,18 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}]},["ayWkl","5AeTt"], "5AeTt", "parcelRequire94c2")
+},{}],"aXK7d":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "render", ()=>render);
+function render(image) {
+    const view = svg.viewBox.baseVal;
+    const newViewBoxWidth = view.width * image.getBBox().width / 776;
+    const newViewBoxHeight = newViewBoxWidth / 1.7777;
+    view.width = newViewBoxWidth;
+    view.height = newViewBoxHeight;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["ayWkl","5AeTt"], "5AeTt", "parcelRequire94c2")
 
 //# sourceMappingURL=index.2a25fc36.js.map

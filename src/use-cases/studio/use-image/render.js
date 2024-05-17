@@ -1,11 +1,9 @@
 export function render(image) {
   const view = svg.viewBox.baseVal;
 
-  const svgWidthAnterior = 1920;
+  const newViewBoxWidth = (view.width * image.getBBox().width) / 776;
+  const newViewBoxHeight = newViewBoxWidth / 1.7777;
 
-
-  if(view.width < image.width) {
-    const proporcao = view.width - svgWidthAnterior;
-  }
-
+  view.width = newViewBoxWidth;
+  view.height = newViewBoxHeight;
 }

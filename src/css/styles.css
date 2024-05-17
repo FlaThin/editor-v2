@@ -44,7 +44,7 @@ body {
   border-radius: 32px;
   overflow: hidden;
   background-color: var(--slate-100);
-  height: calc(100% - 200px);
+  height: 787.5;
   position: relative;
 }
 

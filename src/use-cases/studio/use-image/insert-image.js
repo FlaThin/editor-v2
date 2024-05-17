@@ -1,4 +1,4 @@
-export function insertImage(url, mouseX, mouseY) {
+export function insertImage(url, x, y) {
 
   var image = document.createElementNS("http://www.w3.org/2000/svg", "image");
 

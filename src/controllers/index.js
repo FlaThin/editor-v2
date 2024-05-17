@@ -2,6 +2,7 @@ import { updateItem } from "../use-cases/studio/update-item";
 import { insertImage } from "../use-cases/studio/use-image/insert-image";
 import { insertText } from "../use-cases/studio/use-text/insert-text";
 import background from "../../public/kamisato-ayato-genshin-impact.jpg";
+import { render } from "../use-cases/studio/use-image/render";
 
 const image = insertImage(background);
 
@@ -12,6 +13,22 @@ updateItem(text, {
   "x": 500,
   "y": 100
 });
+
+render(image)
+
+console.log(776 / 1.7);
+
+console.log(svg.viewBox.baseVal.height / 2)
+console.log(image.width.baseVal)
+const posy = svg.viewBox.baseVal.height / 2 - (776 / 1.7) ;
+
+console.log(svg.viewBox.baseVal.width )
+const posx = (svg.viewBox.baseVal.width * 312) / svg.width.baseVal.value;
+
+image.setAttribute("x", posx);
+image.setAttribute("y", posy);
+
+
 
 image.addEventListener("click", (element, event) => {
   var bbox = image.getBBox();
