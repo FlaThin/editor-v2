@@ -37,6 +37,7 @@ window.addEventListener("mousemove", function(event) {
         var deltaY = Math.round(event.layerY - startY);
         viewBox.x = startViewBoxX - deltaX;
         viewBox.y = startViewBoxY - deltaY;
+        update();
     }
 });
 

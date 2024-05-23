@@ -6,4 +6,5 @@ export function render(image) {
 
   view.width = newViewBoxWidth;
   view.height = newViewBoxHeight;
+  update();
 }

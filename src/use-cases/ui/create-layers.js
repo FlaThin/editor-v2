@@ -8,16 +8,14 @@ const data = [
           { text: 'Name', type: 'text' },
           { text: 'Logo', type: 'image' },
           { text: 'Odd', type: 'text' },
-        ], type: 'none'
+        ]
       },
-      { text: 'Team b', subItems: [], type: 'none' },
-    ], type: 'none'
+      { text: 'Team b', subItems: [] },
+    ]
   },
-  { text: 'Fixed', subItems: [], type: 'none' },
-  { text: 'Custom', subItems: [], type: 'none' },
+  { text: 'Fixed', subItems: [] },
+  { text: 'Custom', subItems: [] },
 ];
-
-const wrapperLayers = document.querySelector(".layer-contents");
 
 
 function renderItems(items, padding = 28) {
@@ -37,11 +35,25 @@ function renderData(data) {
 
 }
 
-function createItem(padding, itemPrimitive) {
+function createItem(padding, itemPrimitive, itemDroppable) {
 
   const { text, subItems, type } = itemPrimitive;
 
   const item = document.createElement("div");
+
+
+  if (type !== undefined) {
+    item.setAttribute("draggable", "true");
+
+    item.addEventListener("dragstart", () => {
+      console.log("drag")
+    });
+
+    item.addEventListener("dragend", () => {
+      console.log("end")
+    });
+  }
+  
 
   if (padding) {
     item.style.padding = `12px ${padding}px`;
@@ -53,7 +65,7 @@ function createItem(padding, itemPrimitive) {
 
   const content = `
     <header>
-      ${ iconContent}
+      ${iconContent}
       <span>
         ${text}
       </span>
@@ -72,15 +84,15 @@ function createIcon(type) {
         <div class="icon archive">
           <i class="ph ph-text-t"></i>
         </div>`;
-    break;
+      break;
 
     case 'image':
       return `
         <div class="icon archive">
           <i class="ph ph-image"></i>
         </div>`;
-    break;
-    default: 
+      break;
+    default:
       return `
       <div class="icon expand">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 512">

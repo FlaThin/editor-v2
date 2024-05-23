@@ -591,6 +591,7 @@ var _insertText = require("../use-cases/studio/use-text/insert-text");
 var _kamisatoAyatoGenshinImpactJpg = require("../../public/kamisato-ayato-genshin-impact.jpg");
 var _kamisatoAyatoGenshinImpactJpgDefault = parcelHelpers.interopDefault(_kamisatoAyatoGenshinImpactJpg);
 var _render = require("../use-cases/studio/use-image/render");
+var _moveImage = require("../use-cases/studio/use-image/move-image");
 const image = (0, _insertImage.insertImage)((0, _kamisatoAyatoGenshinImpactJpgDefault.default));
 const text = (0, _insertText.insertText)("Twitter");
 (0, _updateItem.updateItem)(text, {
@@ -599,11 +600,8 @@ const text = (0, _insertText.insertText)("Twitter");
     "y": 100
 });
 (0, _render.render)(image);
-console.log(776 / 1.7);
-console.log(svg.viewBox.baseVal.height / 2);
-console.log(image.width.baseVal);
+(0, _moveImage.moveImage)(image);
 const posy = svg.viewBox.baseVal.height / 2 - 776 / 1.7;
-console.log(svg.viewBox.baseVal.width);
 const posx = svg.viewBox.baseVal.width * 312 / svg.width.baseVal.value;
 image.setAttribute("x", posx);
 image.setAttribute("y", posy);
@@ -620,21 +618,15 @@ image.addEventListener("click", (element, event)=>{
     svg.appendChild(rect);
 });
 
-},{"../use-cases/studio/use-text/insert-text":"36KFH","../use-cases/studio/update-item":"6SXzP","../use-cases/studio/use-image/insert-image":"c72Os","../../public/kamisato-ayato-genshin-impact.jpg":"fVaBd","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../use-cases/studio/use-image/render":"aXK7d"}],"36KFH":[function(require,module,exports) {
+},{"../use-cases/studio/update-item":"6SXzP","../use-cases/studio/use-image/insert-image":"c72Os","../use-cases/studio/use-text/insert-text":"36KFH","../../public/kamisato-ayato-genshin-impact.jpg":"fVaBd","../use-cases/studio/use-image/render":"aXK7d","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../use-cases/studio/use-image/move-image":"6wXw2"}],"6SXzP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "insertText", ()=>insertText);
-function insertText(content, mouseX, MouseY) {
-    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    text.setAttribute("font-size", "24");
-    text.setAttribute("y", mouseX);
-    text.setAttribute("x", MouseY);
-    text.setAttribute("fill", "black");
-    text.setAttribute("dominant-baseline", "middle");
-    text.setAttribute("text-anchor", "middle");
-    text.innerHTML = content;
-    svg.appendChild(text);
-    return text;
+parcelHelpers.export(exports, "updateItem", ()=>updateItem);
+function updateItem(item, mutate) {
+    const mutableObject = Object.entries(mutate);
+    mutableObject.forEach(([key, value])=>{
+        item.attributes[key].value = value;
+    });
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
@@ -667,18 +659,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"6SXzP":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "updateItem", ()=>updateItem);
-function updateItem(item, mutate) {
-    const mutableObject = Object.entries(mutate);
-    mutableObject.forEach(([key, value])=>{
-        item.attributes[key].value = value;
-    });
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c72Os":[function(require,module,exports) {
+},{}],"c72Os":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "insertImage", ()=>insertImage);
@@ -692,6 +673,23 @@ function insertImage(url, x, y) {
     image.setAttribute("height", "1080");
     svg.appendChild(image);
     return image;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"36KFH":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "insertText", ()=>insertText);
+function insertText(content, mouseX, MouseY) {
+    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    text.setAttribute("font-size", "24");
+    text.setAttribute("y", mouseX);
+    text.setAttribute("x", MouseY);
+    text.setAttribute("fill", "black");
+    text.setAttribute("dominant-baseline", "middle");
+    text.setAttribute("text-anchor", "middle");
+    text.innerHTML = content;
+    svg.appendChild(text);
+    return text;
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fVaBd":[function(require,module,exports) {
@@ -742,8 +740,34 @@ function render(image) {
     const newViewBoxHeight = newViewBoxWidth / 1.7777;
     view.width = newViewBoxWidth;
     view.height = newViewBoxHeight;
+    update();
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["ayWkl","5AeTt"], "5AeTt", "parcelRequire94c2")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6wXw2":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * @param {SVGImageElement} image 
+ */ parcelHelpers.export(exports, "moveImage", ()=>moveImage);
+var _updateItem = require("../update-item");
+function moveImage(image) {
+    const itemDragg = {
+        current: null
+    };
+    image.addEventListener("mousedown", function(e) {
+        itemDragg.current = image;
+    });
+    image.addEventListener("mousemove", function(e) {
+        if (itemDragg.current) (0, _updateItem.updateItem)(image, {
+            x: svg.viewBox.baseVal.width * e.layerX / svg.width.baseVal.value - image.getBBox().width / 2,
+            y: e.layerY
+        });
+    });
+    image.addEventListener("mouseup", function(e) {
+        itemDragg.current = null;
+    });
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../update-item":"6SXzP"}]},["ayWkl","5AeTt"], "5AeTt", "parcelRequire94c2")
 
 //# sourceMappingURL=index.2a25fc36.js.map

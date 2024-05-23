@@ -17,26 +17,21 @@ const data = [
                         text: "Odd",
                         type: "text"
                     }
-                ],
-                type: "none"
+                ]
             },
             {
                 text: "Team b",
-                subItems: [],
-                type: "none"
+                subItems: []
             }
-        ],
-        type: "none"
+        ]
     },
     {
         text: "Fixed",
-        subItems: [],
-        type: "none"
+        subItems: []
     },
     {
         text: "Custom",
-        subItems: [],
-        type: "none"
+        subItems: []
     }
 ];
 const wrapperLayers = document.querySelector(".layer-contents");
@@ -55,6 +50,16 @@ function renderData(data) {
 function createItem(padding, itemPrimitive) {
     const { text, subItems, type } = itemPrimitive;
     const item = document.createElement("div");
+    console.log(type);
+    if (type !== undefined) {
+        item.setAttribute("draggable", "true");
+        item.addEventListener("dragstart", ()=>{
+            console.log("drag");
+        });
+        item.addEventListener("dragend", ()=>{
+            console.log("end");
+        });
+    }
     if (padding) item.style.padding = `12px ${padding}px`;
     item.classList.add("layer-item");
     const iconContent = createIcon(type);

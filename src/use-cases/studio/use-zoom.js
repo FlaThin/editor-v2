@@ -7,7 +7,6 @@ var isDragging = false;
 var startX, startY;
 var startViewBoxX, startViewBoxY;
 
-
 svgContainer.addEventListener("wheel", function (event) {
   event.preventDefault();
 
@@ -52,5 +51,6 @@ window.addEventListener("mousemove", function (event) {
 
     viewBox.x = startViewBoxX - deltaX;
     viewBox.y = startViewBoxY - deltaY;
+    update()
   }
 });
